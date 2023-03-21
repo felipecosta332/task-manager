@@ -1,17 +1,17 @@
+import { useState } from "react";
 import { Header } from "./components/Header";
 import { AddTask } from "./components/AddTask";
 import { ShowTask } from "./components/ShowTask";
 import "./App.css";
-import { useState } from "react";
 
 function App() {
-  const [tasklist, setTasklist] = useState([]);
+  const [taskList, setTaskList] = useState([]);
 
   return (
     <div className="App">
       <Header />
-      <AddTask tasklist={tasklist} setTasklist={setTasklist} />
-      <ShowTask tasklist={tasklist} setTasklist={setTasklist} />
+      <AddTask taskList={taskList} setTaskList={setTaskList} />
+      <ShowTask taskList={taskList} setTaskList={setTaskList} />
     </div>
   );
 }

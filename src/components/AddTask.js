@@ -1,7 +1,19 @@
-export const AddTask = (tasklist, setTasklist) => {
+export const AddTask = ({ taskList, setTaskList }) => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const date = new Date();
+    const newTask = {
+      id: date.getTime(),
+      name: event.target.task.value,
+      time: `${date.toLocaleTimeString()} ${date.toLocaleDateString()}`,
+    };
+    setTaskList([...taskList, newTask]);
+  };
+
   return (
     <section className="addTask">
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="task"
