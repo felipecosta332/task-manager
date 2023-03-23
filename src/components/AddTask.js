@@ -1,20 +1,22 @@
 export const AddTask = ({ taskList, setTaskList, task, setTask }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
-    let date = new Date();
-    let newTask = {
-      id: date.getTime(),
-      name: task.name,
-      time: `${date.toLocaleTimeString()} ${date.toLocaleDateString()}`,
-    };
+    if (task.name !== undefined && task.name.length > 0) {
+      let date = new Date();
+      let newTask = {
+        id: date.getTime(),
+        name: task.name,
+        time: `${date.toLocaleTimeString()} ${date.toLocaleDateString()}`,
+      };
 
-    if (task.id) {
-      let updatedTaskList = taskList.map((todo) =>
-        todo.id === task.id ? newTask : todo
-      );
-      setTaskList(updatedTaskList);
-    } else {
-      setTaskList([...taskList, newTask]);
+      if (task.id) {
+        let updatedTaskList = taskList.map((todo) =>
+          todo.id === task.id ? newTask : todo
+        );
+        setTaskList(updatedTaskList);
+      } else {
+        setTaskList([...taskList, newTask]);
+      }
     }
     setTask({});
   };
@@ -31,7 +33,7 @@ export const AddTask = ({ taskList, setTaskList, task, setTask }) => {
           maxLength="25"
           onChange={(event) => setTask({ ...task, name: event.target.value })}
         />
-        <button type="submit">Add</button>
+        <button type="submit">{task.id ? "Update" : "Add"}</button>
       </form>
     </section>
   );
