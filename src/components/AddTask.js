@@ -16,6 +16,7 @@ export const AddTask = ({ taskList, setTaskList, task, setTask }) => {
     } else {
       setTaskList([...taskList, newTask]);
     }
+    setTask({});
   };
 
   return (
@@ -24,7 +25,7 @@ export const AddTask = ({ taskList, setTaskList, task, setTask }) => {
         <input
           type="text"
           name="task"
-          value={task.name}
+          value={task.name || ""}
           autoComplete="off"
           placeholder="add task"
           maxLength="25"
